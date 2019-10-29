@@ -9,3 +9,6 @@ class TestCommaSeparetedNumbers(unittest.TestCase):
     def test_one_number(self):
         self.assertEqual(1, string_calculator.add('1'))
         self.assertEqual(2, string_calculator.add('2'))
+
+    def test_two_numbers(self):
+        self.assertEqual(3, string_calculator.add('1,2'))

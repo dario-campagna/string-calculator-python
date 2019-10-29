@@ -12,3 +12,6 @@ class TestCommaSeparetedNumbers(unittest.TestCase):
 
     def test_two_numbers(self):
         self.assertEqual(3, string_calculator.add('1,2'))
+    
+    def test_unknown_amount_of_numbers(self):
+        self.assertEqual(18, string_calculator.add('10,3,5'))

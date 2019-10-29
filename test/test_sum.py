@@ -15,3 +15,10 @@ class TestCommaSeparetedNumbers(unittest.TestCase):
     
     def test_unknown_amount_of_numbers(self):
         self.assertEqual(18, string_calculator.add('10,3,5'))
+
+class TestNewLineSeparatedNumbers(unittest.TestCase):
+    def test_newline_as_separator(self):
+        self.assertEqual(5, string_calculator.add('2\n3'))
+
+    def test_newline_and_comma_separated_numbers(self):
+        self.assertEqual(49, string_calculator.add('34,7\n8'))

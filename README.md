@@ -1,3 +1,3 @@
-# Python TDD template
+# String Calculator Kata
 
-Template project for practicing TDD with Python `unittest` and Visual Studio Code.
+[String Calculator Kata](https://osherove.com/tdd-kata-1/) implemented in Python with `unittest`.

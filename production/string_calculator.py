@@ -10,26 +10,30 @@ def add(numbers):
         return sum([i for i in integers if i < 1001])
 
 
+def __check_for_negatives__(integers):
+    negatives = [n for n in integers if n < 0]
+    if len(negatives) > 0:
+        raise RuntimeError('negatives not allowed ' + str(negatives))
+
+
 def __parse__(numbers):
     tokens = __tokenize__(numbers)
     return [int(x) for x in tokens]
 
 
 def __tokenize__(numbers):
-    pattern = re.compile('//\[(.+)\]\n(.+)')
-    match = pattern.match(numbers)
+    delimiters, numbers = __split_into_delimiters_and_numbers__(numbers)
+    return re.split(delimiters, numbers)
+
+
+def __split_into_delimiters_and_numbers__(numbers):
+    match = re.compile('//(.+)\n(.+)').match(numbers)
     if match:
-        if len(match.group(1)) == 1:
-            return re.split(re.escape(match.group(1)), match.group(2))
-        else:
-            delimiters = re.split('\]\[', match.group(1))
-            regex = '|'.join(re.escape(d) for d in delimiters)
-            return re.split(regex, match.group(2))
+        return (__generate_delimiters_regex__(match.group(1)), match.group(2))
     else:
-        return re.split(',|\n', numbers)
+        return (',|\n', numbers)
 
 
-def __check_for_negatives__(integers):
-    negatives = [n for n in integers if n < 0]
-    if len(negatives) > 0:
-        raise RuntimeError('negatives not allowed ' + str(negatives))
+def __generate_delimiters_regex__(delimiters_definition):
+    delimiters = re.findall('\[([^\[\]]+)\]', delimiters_definition)
+    return '|'.join(re.escape(d) for d in delimiters)

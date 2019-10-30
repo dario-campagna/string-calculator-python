@@ -5,18 +5,25 @@ def add(numbers):
     if '' == numbers:
         return 0
     else:
-        return sum([int(x) for x in __tokenize__(numbers)])
+        integers = __parse__(numbers)
+        __check_for_negatives__(integers)
+        return sum(integers)
+
+
+def __parse__(numbers):
+    tokens = __tokenize__(numbers)
+    return [int(x) for x in tokens]
 
 
 def __tokenize__(numbers):
-    delimiter_regex, numbers = __split_into_delimiter_and_numbers__(numbers)
-    return re.split(delimiter_regex, numbers)
-
-
-def __split_into_delimiter_and_numbers__(numbers):
     pattern = re.compile(r"//(.)\n(.+)")
     match = pattern.match(numbers)
     if match:
-        return (match.group(1), match.group(2))
+        return re.split(match.group(1), match.group(2))
     else:
-        return (',|\n', numbers)
+        return re.split(r",|\n", numbers)
+
+def __check_for_negatives__(integers):
+    negatives = [n for n in integers if n < 0]   
+    if len(negatives) > 0:
+        raise RuntimeError('negatives not allowed ' + str(negatives))

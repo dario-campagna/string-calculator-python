@@ -7,7 +7,7 @@ def add(numbers):
     else:
         integers = __parse__(numbers)
         __check_for_negatives__(integers)
-        return sum(integers)
+        return sum([i for i in integers if i < 1001])
 
 
 def __parse__(numbers):

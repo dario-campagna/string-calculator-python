@@ -32,22 +32,9 @@ class TestCustomDelimiter(unittest.TestCase):
     def test_dash_as_standard_delimiters(self):
         self.assertEqual(35, string_calculator.add('//_\n13_6_9_7'))
 
-
-class TestExceptionOnNegatives(unittest.TestCase):
-    def test_exception_on_one_negative(self):
-        with self.assertRaises(RuntimeError) as cm:
-            string_calculator.add('-1')
-
-        self.assertEqual('negatives not allowed [-1]', str(cm.exception))
-
-    def test_exception_on_positives_and_one_negative(self):
-        with self.assertRaises(RuntimeError) as cm:
-            string_calculator.add('4,-2,100')
-
-        self.assertEqual('negatives not allowed [-2]', str(cm.exception))
-
-    def test_exception_on_more_than_one_negative(self):
-        with self.assertRaises(RuntimeError) as cm:
-            string_calculator.add('9,-52,-42,11')
-
-        self.assertEqual('negatives not allowed [-52, -42]', str(cm.exception))
+class TestIgnoreBiggerThan1000(unittest.TestCase):
+    def test_ignore_1001(self):
+        self.assertEqual(2, string_calculator.add('2,10001'))
+    
+    def test_ignore_2000_and_1432(self):
+        self.assertEqual(1016, string_calculator.add('2,2000,14,1432,1000'))

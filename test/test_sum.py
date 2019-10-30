@@ -22,3 +22,10 @@ class TestNewLineSeparatedNumbers(unittest.TestCase):
 
     def test_newline_and_comma_separated_numbers(self):
         self.assertEqual(49, string_calculator.add('34,7\n8'))
+
+class TestCustomDelimiter(unittest.TestCase):
+    def test_only_custom_delimiter(self):
+        self.assertEqual(23, string_calculator.add('//;\n11;8;4'))
+    
+    def test_custom_and_standard_delimiters(self):
+        self.assertEqual(35, string_calculator.add('//-\n13,6-9\n7'))

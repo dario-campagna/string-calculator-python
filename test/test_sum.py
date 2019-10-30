@@ -24,8 +24,8 @@ class TestNewLineSeparatedNumbers(unittest.TestCase):
         self.assertEqual(49, string_calculator.add('34,7\n8'))
 
 class TestCustomDelimiter(unittest.TestCase):
-    def test_only_custom_delimiter(self):
+    def test_semicolon_as_custom_delimiter(self):
         self.assertEqual(23, string_calculator.add('//;\n11;8;4'))
     
-    def test_custom_and_standard_delimiters(self):
-        self.assertEqual(35, string_calculator.add('//-\n13,6-9\n7'))
+    def test_dash_as_standard_delimiters(self):
+        self.assertEqual(35, string_calculator.add('//-\n13-6-9-7'))

@@ -19,7 +19,12 @@ def __tokenize__(numbers):
     pattern = re.compile('//\[(.+)\]\n(.+)')
     match = pattern.match(numbers)
     if match:
-        return re.split(re.escape(match.group(1)), match.group(2))
+        if len(match.group(1)) == 1:
+            return re.split(re.escape(match.group(1)), match.group(2))
+        else:
+            delimiters = re.split('\]\[', match.group(1))
+            regex = '|'.join(re.escape(d) for d in delimiters)
+            return re.split(regex, match.group(2))
     else:
         return re.split(',|\n', numbers)
 

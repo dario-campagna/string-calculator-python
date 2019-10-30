@@ -35,6 +35,10 @@ class TestCustomDelimiter(unittest.TestCase):
     def test_long_delimiters(self):
         self.assertEqual(6, string_calculator.add('//[***]\n1***2***3'))
         self.assertEqual(6, string_calculator.add('//[++]\n1++2++3'))
+    
+    def test_multiple_delimiters(self):
+        self.assertEqual(33, string_calculator.add('//[*][%]\n11*20%2'))
+        self.assertEqual(42, string_calculator.add('//[---][::]\n31::10---1'))
 
 class TestIgnoreBiggerThan1000(unittest.TestCase):
     def test_ignore_1001(self):

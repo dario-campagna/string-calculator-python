@@ -16,14 +16,15 @@ def __parse__(numbers):
 
 
 def __tokenize__(numbers):
-    pattern = re.compile(r"//(.)\n(.+)")
+    pattern = re.compile('//\[(.+)\]\n(.+)')
     match = pattern.match(numbers)
     if match:
-        return re.split(match.group(1), match.group(2))
+        return re.split(re.escape(match.group(1)), match.group(2))
     else:
-        return re.split(r",|\n", numbers)
+        return re.split(',|\n', numbers)
+
 
 def __check_for_negatives__(integers):
-    negatives = [n for n in integers if n < 0]   
+    negatives = [n for n in integers if n < 0]
     if len(negatives) > 0:
         raise RuntimeError('negatives not allowed ' + str(negatives))

@@ -27,10 +27,10 @@ class TestNewLineSeparatedNumbers(unittest.TestCase):
 
 class TestCustomDelimiter(unittest.TestCase):
     def test_semicolon_as_custom_delimiter(self):
-        self.assertEqual(23, string_calculator.add('//[;]\n11;8;4'))
+        self.assertEqual(23, string_calculator.add('//;\n11;8;4'))
 
     def test_dash_as_custom_delimiters(self):
-        self.assertEqual(35, string_calculator.add('//[_]\n13_6_9_7'))
+        self.assertEqual(35, string_calculator.add('//_\n13_6_9_7'))
     
     def test_long_delimiters(self):
         self.assertEqual(6, string_calculator.add('//[***]\n1***2***3'))

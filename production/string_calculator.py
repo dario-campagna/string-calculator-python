@@ -35,5 +35,8 @@ def __split_into_delimiters_and_numbers__(numbers):
 
 
 def __generate_delimiters_regex__(delimiters_definition):
-    delimiters = re.findall('\[([^\[\]]+)\]', delimiters_definition)
-    return '|'.join(re.escape(d) for d in delimiters)
+    if delimiters_definition[0] == '[':
+        delimiters = re.findall('\[([^\[\]]+)\]', delimiters_definition)
+        return '|'.join(re.escape(d) for d in delimiters)
+    else:
+        return re.escape(delimiters_definition)

@@ -31,18 +31,19 @@ class TestCustomDelimiter(unittest.TestCase):
 
     def test_dash_as_custom_delimiters(self):
         self.assertEqual(35, string_calculator.add('//_\n13_6_9_7'))
-    
+
     def test_long_delimiters(self):
         self.assertEqual(6, string_calculator.add('//[***]\n1***2***3'))
         self.assertEqual(6, string_calculator.add('//[++]\n1++2++3'))
-    
+
     def test_multiple_delimiters(self):
         self.assertEqual(33, string_calculator.add('//[*][%]\n11*20%2'))
         self.assertEqual(42, string_calculator.add('//[---][::]\n31::10---1'))
 
+
 class TestIgnoreBiggerThan1000(unittest.TestCase):
     def test_ignore_1001(self):
         self.assertEqual(2, string_calculator.add('2,10001'))
-    
+
     def test_ignore_2000_and_1432(self):
         self.assertEqual(1016, string_calculator.add('2,2000,14,1432,1000'))
